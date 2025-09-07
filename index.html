@@ -10,41 +10,28 @@
     header, footer { background: #0C2A4A; color: #fff; padding: 15px 20px; }
     header img { height: 50px; vertical-align: middle; }
     nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    .hero-slider { position: relative; width: 100%; max-height: 400px; overflow: hidden; }
-    .hero-slider .slides { display: flex; width: 400%; animation: slide 16s infinite; }
-    .hero-slider .slides img { width: 100%; object-fit: cover; }
-    .hero-text {
+
+    .hero-slider { position: relative; width: 100%; height: 400px; overflow: hidden; }
+    .slides { display: flex; transition: transform 0.6s ease-in-out; }
+    .slides img { width: 100%; height: 400px; object-fit: cover; flex-shrink: 0; }
+    .hero-content {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
+      left: 50px;
+      transform: translateY(-50%);
       color: #fff;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
+      max-width: 450px;
+      text-align: left;
     }
-    .hero-text h1 { font-size: 2em; margin-bottom: 10px; }
-    .hero-text p { font-size: 1.2em; margin-bottom: 15px; }
-    .btn { background: #F57C00; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+    .hero-content h1 { font-size: 2em; margin-bottom: 15px; }
+    .hero-content p { font-size: 1.1em; margin-bottom: 15px; }
+    .btn { background: #F57C00; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; }
     section { max-width: 900px; margin: 50px auto; padding: 0 20px; }
     section img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
     footer .columns { display: flex; flex-wrap: wrap; justify-content: space-between; }
     footer div { margin: 10px; }
     .sticky-donate { position: fixed; bottom: 20px; right: 20px; background: #F57C00; color: #fff;
                      padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; }
-    @keyframes slide {
-      0%   { transform: translateX(0%); }
-      20%  { transform: translateX(0%); }
-      25%  { transform: translateX(-100%); }
-      45%  { transform: translateX(-100%); }
-      50%  { transform: translateX(-200%); }
-      70%  { transform: translateX(-200%); }
-      75%  { transform: translateX(-300%); }
-      95%  { transform: translateX(-300%); }
-      100% { transform: translateX(0%); }
-    }
   </style>
 </head>
 <body>
@@ -60,14 +47,14 @@
   <div style="clear: both;"></div>
 </header>
 
-<div class="hero-slider">
+<div class="hero-slider" id="hero-slider">
   <div class="slides">
-    <img src="https://ik.imagekit.io/Foundation/q30s57do_flood_625x300_29_August_25.webp?updatedAt=1757213453617" alt="Flood Image 1">
-    <img src="https://ik.imagekit.io/Foundation/Punjab_Gurdaspur__1756442018170_1756442018365.jpg?updatedAt=1757213452885" alt="Flood Image 2">
-    <img src="https://ik.imagekit.io/Foundation/31_08_2025-flood_1_24030811.jpg?updatedAt=1757213453095" alt="Flood Image 3">
-    <img src="https://ik.imagekit.io/Foundation/68b57dca69f48-punjab-flood-relief-fund-010436930-16x9.webp?updatedAt=1757213453106" alt="Flood Image 4">
+    <img src="https://ik.imagekit.io/Foundation/q30s57do_flood_625x300_29_August_25.webp?updatedAt=1757213453617" alt="Flood Relief Image">
+    <img src="https://ik.imagekit.io/Foundation/Punjab_Gurdaspur__1756442018170_1756442018365.jpg?updatedAt=1757213452885" alt="Flood Relief Image">
+    <img src="https://ik.imagekit.io/Foundation/31_08_2025-flood_1_24030811.jpg?updatedAt=1757213453095" alt="Flood Relief Image">
+    <img src="https://ik.imagekit.io/Foundation/68b57dca69f48-punjab-flood-relief-fund-010436930-16x9.webp?updatedAt=1757213453106" alt="Flood Relief Image">
   </div>
-  <div class="hero-text">
+  <div class="hero-content">
     <h1>Together, We Can Rebuild Lives in Punjab</h1>
     <p>Thousands of families in Punjab are struggling after devastating floods swept away their homes, food, and safety. Your support can bring them hope and survival.</p>
     <a href="donate.html" class="btn">Donate Now</a>
@@ -103,6 +90,18 @@
   </div>
   <p style="text-align:center; margin-top:10px;">© 2025 Sahayra Foundation. All rights reserved.</p>
 </footer>
+
 <a href="donate.html" class="sticky-donate">Donate Now</a>
+
+<script>
+  const slides = document.querySelector('.slides');
+  const slideCount = document.querySelectorAll('.slides img').length;
+  let index = 0;
+  setInterval(() => {
+    index = (index + 1) % slideCount;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+  }, 4000);
+</script>
+
 </body>
 </html>
